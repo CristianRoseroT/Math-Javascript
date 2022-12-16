@@ -36,6 +36,24 @@ function calcularTriangulo(lado1, lado2, base, altura){
     };
 }
 
+function calcularAlturaTriangulo(lado1 , base){
+    if(lado1 == base){
+        console.log('Este no puede ser un triangulo isoseles')
+    }else{
+        //h = raizcuadrada(lado1**2 - (b**2)/4)
+        return Math.sqrt((lado1 ** 2)- ((base**2))/4);
+    }
+}
+
+function calcularTrianguloEscaleno(lado1, lado2, lado3){
+    if(lado1 != lado2 && lado1 != lado3 && lado2 != lado3){
+        const S = (lado1+lado2+lado3)/2;
+        return Math.trunc(2/ lado1 * Math.trunc(S*(S-lado1)*(S-lado2)*(S-lado3)));
+    }
+    return false;
+
+}
+
 console.log({
     ladoTriangulo1,
     ladoTriangulo2,
@@ -78,3 +96,40 @@ function calcularCirculo(radio){
 
 
 console.groupEnd('Circle')
+
+const inputPrice = document.querySelector('#price');
+const inputCoupon = document.querySelector('#coupon');
+const btnAccionar = document.querySelector('#btnCalcular');
+const pResult = document.querySelector('#result');
+
+
+
+btnAccionar.addEventListener("click", calcularTotalPrecio);
+
+function calcularTotalPrecio(){
+    const precio = Number(inputPrice.value);
+    const coupon = inputCoupon.value;
+
+    if(!precio || !coupon){
+        pResult.innerText = 'No hay datos, agrega un resultado';
+        return;
+    }
+
+    let descuento;
+    if (coupon == 'cristian_es_rey'){
+        descuento = 30;
+    }else if (coupon == 'no_le_digas_a_nadie' ){
+        descuento = 25;
+    }else{
+        pResult.innerText= 'El cupón no es valido, lo siento perrito';
+        return;
+    }
+    
+    const nuevoPrecio = (precio * (100-descuento))/100;
+
+    pResult.innerText = 'El nuevo precio con descuento es $' + nuevoPrecio;
+
+
+
+
+}
