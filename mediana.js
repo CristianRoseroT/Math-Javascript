@@ -1,32 +1,54 @@
-const btn = document.querySelector('#calcular');
-const pResult = document.querySelector('#result');
-let lista = [36,55,68,37,29,23,55,77,88,523];
+function esPar(lista) {
+  return !(lista.length % 2);
+}
+function esImpar(lista) {
+  return lista.length % 2;
+}
 
-btn.addEventListener('click', calcularMediana);
+function calcularMediana(listaDesordenada) {
+  const lista = ordenarLista(listaDesordenada);
+  const listaEsPar = esPar(lista);
 
+  if (listaEsPar) {
+    const MitadListaPar = lista[(lista.length / 2)-1];
+    const Mitad2ListaPar = lista[lista.length / 2];
 
-
-function esPar(){
-    return !(lista % 2);
-};
-
-function esImpar(){
-    return (lista.length % 2);
-};
-
-
-
-function calcularMediana(){
-
+    const listaMitades = [MitadListaPar, Mitad2ListaPar];
     
-    const listaEsPar = esPar(lista);
+    calcularPromedio(listaMitades);
+    } else {
+    const indexMitadListaImpar = Math.floor(lista.length / 2);
+    const medianaListaImpar = lista[indexMitadListaImpar];
+    console.log(indexMitadListaImpar);
+    console.log(medianaListaImpar);
+    return medianaListaImpar;
+  }
+}
 
-    if(listaEsPar){
+function calcularPromedio(lista) {
+    function sumarTodosElementos(valorAcumulado, nuevoValor) {
+    return valorAcumulado + nuevoValor;
+  }
 
-    }else{
-        const medianaImpar = Math.floor(lista.length / 2) + 1;
-        pResult.innerText = 'La mediana de los numeros es: ' + (lista[medianaImpar]);
-    }
+  const sumaLista = lista.reduce(sumarTodosElementos);  
+  const promedio = sumaLista / lista.length;
+  console.log(promedio);
+  return promedio;
+}
 
-    
-};
+function ordenarLista(listaDesordenada){
+  function ordenarListaSort(valorAcumulado, nuevoValor){
+
+    // if(valorAcumulado < nuevoValor){
+    //   return -1;
+    // }else if (valorAcumulado == nuevoValor) {
+    //   return 0;
+    // }else if (valorAcumulado > nuevoValor){
+    //   return 1;
+    // }
+    return valorAcumulado - nuevoValor;
+
+  }
+  const lista = listaDesordenada.sort((a,b) => a-b);
+  return lista
+}

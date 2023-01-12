@@ -23,13 +23,9 @@ function promedio(){
 }
 
 function calcularPromedioConReduce(){
-
-
-
     // function SumarTodosLosElementos(valorAcumulado, nuevoValor){
     //     return valorAcumulado + nuevoValor;
     // };
-
     //Esta es una manera de hacer una arrow function que es = () => {}
     const SumarTodosLosElementos = (valorAcumulado, nuevoValor) => valorAcumulado + nuevoValor;
 
@@ -40,7 +36,5 @@ function calcularPromedioConReduce(){
 
     pResult2.innerText = 'El promedio de los numeros es: ' + promedio;
     
-    
-
 }
 
